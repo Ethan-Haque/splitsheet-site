@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* Token values are splitsheet-web's (app/globals.css there), so the page and
+   the product it links to read as one thing. Unlike the app, dark mode follows
+   the OS only: a marketing page has no settings screen to put a toggle in, and
+   Tailwind's default `dark:` variant already keys off prefers-color-scheme. */
+:root {
+  --background: #fafafa;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --muted: #f4f4f5;
+  /* One step darker than the app's #71717a: that gray is 4.4:1 on --muted, just
+     under WCAG AA, and this page sets small captions on --muted fills. */
+  --muted-foreground: #66666f;
+  --border: #e4e4e7;
+  --input: #d4d4d8;
+
+  --primary: #15803d;
+  --primary-foreground: #ffffff;
+  --ring: #15803d;
+  --accent: #d1fae5;
+  --accent-foreground: #065f46;
+
+  --destructive: #dc2626;
+
+  /* Fill for the closing call-to-action panel. Not --primary: that brightens in
+     dark mode to read as green text on black, and a whole panel of it glares
+     and leaves every label on it dark-on-neon. Deeper than light-mode primary
+     too, so the panel's 75%-white captions still clear 4.5:1. Same in both
+     themes. */
+  --cta: #166534;
+  --cta-foreground: #ffffff;
+
+  --chart-1: #0f766e;
+  --chart-2: #2563eb;
+  --chart-3: #c2410c;
+  --chart-4: #7c3aed;
+  --chart-5: #db2777;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #18181b;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    --border: #27272a;
+    --input: #3f3f46;
+
+    --primary: #22c55e;
+    --primary-foreground: #052e16;
+    --ring: #22c55e;
+    --accent: #14532d;
+    --accent-foreground: #bbf7d0;
+
+    --destructive: #ef4444;
+
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* In-page anchors land below the sticky nav instead of under it. */
+  scroll-padding-top: 5rem;
+}
+
+/* Reveal-on-scroll. Content is visible by default and only hidden once the
+   `js` class proves the observer will run, so the page never ships blank to a
+   crawler or a visitor with scripts off. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 500ms ease-out,
+    transform 500ms ease-out;
+}
+
+html.js [data-reveal][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+/* The sheet dock stays out of the way over the hero. Same rule as reveal: it is
+   only hidden once `js` proves the script that shows it again will run. */
+html.js [data-sheet-dock]:not([data-shown]) {
+  opacity: 0;
+  transform: translateY(calc(100% + 1rem));
+  pointer-events: none;
+}
+
+/* The "+ New trip" sheet tab breathes while the closing call to action is on
+   screen, so the tab and the CTA read as the same next step. */
+@keyframes sheet-nudge {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 40%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 0%, transparent);
+  }
+}
+
+.sheet-nudge {
+  animation: sheet-nudge 1.8s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .sheet-nudge {
+    animation: none;
+  }
+
+  html.js [data-sheet-dock]:not([data-shown]) {
+    transform: none;
+  }
+
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Faint ledger grid behind the hero: the product is a spreadsheet, so the page
+   opens on graph paper. */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--border) 70%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--border) 70%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
