@@ -1,3 +1,4 @@
+import { FeatureGallery } from '@/components/sections/feature-gallery'
 import { Hero } from '@/components/sections/hero'
 import { HowItWorks } from '@/components/sections/how-it-works'
 import { Nav } from '@/components/sections/nav'
@@ -13,6 +14,7 @@ export default function Home() {
         <Showcase />
         <HowItWorks />
         <SplitAnatomy />
+        <FeatureGallery />
       </main>
     </>
   )
