@@ -1,4 +1,5 @@
 import { FeatureGallery } from '@/components/sections/feature-gallery'
+import { FinalCta, Footer } from '@/components/sections/closing'
 import { Hero } from '@/components/sections/hero'
 import { HowItWorks } from '@/components/sections/how-it-works'
 import { Nav } from '@/components/sections/nav'
@@ -15,7 +16,9 @@ export default function Home() {
         <HowItWorks />
         <SplitAnatomy />
         <FeatureGallery />
+        <FinalCta />
       </main>
+      <Footer />
     </>
   )
 }
