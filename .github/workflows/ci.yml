@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Catches UTF-8 decoded as Latin-1 and re-encoded (an em dash arriving as
+      # "â€”"). Same check as splitsheet-web: nothing else in the build reads
+      # text encoding, and the page is mostly prose.
+      - name: Check source encoding
+        run: |
+          if grep -rn 'Ã\|â€\|Â' \
+              --include='*.ts' --include='*.tsx' --include='*.css' \
+              --include='*.md' \
+              --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=.git \
+              .; then
+            echo '::error::Mojibake found — re-save the file(s) above as UTF-8.'
+            exit 1
+          fi
+
+      # The demo's claim to run the app's own math rests on this.
+      - run: npm run verify:vendor
+
+      - run: npm run lint
+
+      - run: npx tsc --noEmit
+
+      - run: npm test
+
+      - run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
