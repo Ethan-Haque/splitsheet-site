@@ -20,8 +20,8 @@ const STEPS = [
   },
   {
     icon: Radio,
-    title: 'Watch balances move, live',
-    body: 'Edits stream to everyone viewing the trip, with avatars showing who else has it open. No refresh, no “did you add the dinner?”',
+    title: 'Balances update live',
+    body: 'Edits show up for everyone viewing the trip right away, with avatars for who else has it open.',
   },
   {
     icon: HandCoins,
@@ -36,7 +36,7 @@ export function HowItWorks() {
       <Container>
         <SectionHeading
           eyebrow="How it works"
-          title={<span id="how-title">From first booking to last transfer.</span>}
+          title={<span id="how-title">From the first expense to settling up.</span>}
         />
 
         <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-16">

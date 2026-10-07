@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ChartPie, Download, Link2, Moon, PiggyBank, Radio, Receipt, Upload } from 'lucide-react'
+import { ChartPie, Download, PiggyBank, Receipt } from 'lucide-react'
 import { Container, SectionHeading } from '@/components/ui/primitives'
 
 const FEATURES = [
@@ -14,34 +14,14 @@ const FEATURES = [
     body: 'Attach a photo to any row. A thumbnail sits in the ledger; click for the full-size lightbox.',
   },
   {
-    icon: Upload,
-    title: 'Card statement import',
-    body: 'Map a bank CSV’s columns, review the guessed categories, and skip rows the trip already has.',
-  },
-  {
-    icon: Radio,
-    title: 'Live presence',
-    body: 'A server-sent event stream pushes every edit to everyone viewing the trip, and shows who else is there.',
-  },
-  {
     icon: ChartPie,
     title: 'Insights',
     body: 'Spending by category and paid-versus-share per person, from the same numbers as the balances.',
   },
   {
-    icon: Link2,
-    title: 'Invite links',
-    body: 'Share a join link, add friends by email, or hand a placeholder member’s history to a real account.',
-  },
-  {
     icon: Download,
     title: 'CSV export',
-    body: 'Download the ledger or the settle-up plan for whoever insists on keeping their own spreadsheet.',
-  },
-  {
-    icon: Moon,
-    title: 'Light and dark',
-    body: 'Applied before first paint, so the page never flashes the wrong theme on load.',
+    body: 'Download the ledger or the settle-up plan as a CSV.',
   },
 ]
 
@@ -50,12 +30,12 @@ export function FeatureGallery() {
     <section id="features" aria-labelledby="features-title" className="py-20 sm:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Everything else"
-          title={<span id="features-title">The details a group trip actually needs.</span>}
+          eyebrow="Features"
+          title={<span id="features-title">Budgets, receipts, and the rest.</span>}
         />
 
-        {/* Bento: the dashboard takes a 2×2 block and the eight features fill
-            the cells around it, so four columns come out as three even rows. */}
+        {/* Bento: the dashboard takes a 2×2 block and the four features fill
+            the 2×2 beside it, so four columns come out as two even rows. */}
         <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <li className="sm:col-span-2 lg:row-span-2" data-reveal>
             <figure className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card">

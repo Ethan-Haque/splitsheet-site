@@ -4,15 +4,11 @@ import { BrowserFrame, Container, SectionHeading } from '@/components/ui/primiti
 const CALLOUTS = [
   {
     title: 'One row per expense',
-    body: 'Date, category, who paid, and an avatar stack for who it covers. It reads like the spreadsheet your group would have made anyway.',
+    body: 'Date, category, who paid, and an avatar stack for who it covers.',
   },
   {
     title: 'A tab for each person',
     body: 'Every traveler gets a sheet of their own, with their share of each row and a running balance pinned to the tab bar.',
-  },
-  {
-    title: 'Totals that add up',
-    body: 'Shares are allocated in whole cents, so $100 three ways is $33.34 + $33.33 + $33.33, never a cent short.',
   },
 ]
 
@@ -41,7 +37,7 @@ export function Showcase() {
           </BrowserFrame>
         </div>
 
-        <ul className="mt-10 grid gap-8 sm:grid-cols-3">
+        <ul className="mt-10 grid gap-8 sm:grid-cols-2">
           {CALLOUTS.map((c, i) => (
             <li key={c.title} data-reveal style={{ transitionDelay: `${i * 80}ms` }}>
               <h3 className="font-semibold">{c.title}</h3>

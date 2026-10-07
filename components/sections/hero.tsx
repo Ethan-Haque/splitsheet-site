@@ -1,13 +1,7 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { LiveSplitter } from '@/components/demo/live-splitter'
 import { Container, buttonClass } from '@/components/ui/primitives'
-import { APP_TEST_COUNT, APP_URL } from '@/lib/site'
-
-const STATS = [
-  { value: String(APP_TEST_COUNT), label: 'unit tests on the app' },
-  { value: '0', label: 'balances stored on the server' },
-  { value: 'n − 1', label: 'payments at most to settle' },
-]
+import { APP_URL } from '@/lib/site'
 
 export function Hero() {
   return (
@@ -18,17 +12,14 @@ export function Hero() {
       />
       <Container className="grid grid-cols-1 items-start gap-12 pt-14 pb-20 sm:pt-20 lg:grid-cols-[1fr_minmax(0,34rem)] lg:gap-14 lg:pt-24">
         <div className="lg:pt-6">
-         
-
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
             Every trip expense, in one shared sheet.
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground">
-            Log who paid, split it evenly, by shares, by percentage, or to the exact
-            cent, and everyone sees a live
-            balance. When the trip ends, Splitsheet tells the group who pays whom, in as few payments as
-            it can.
+            Log who paid and split it evenly, by shares, by percentage, or to the exact cent. Everyone
+            sees the same live balances, and when the trip ends Splitsheet works out who pays whom in
+            as few payments as it can.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -41,16 +32,6 @@ export function Hero() {
               <ArrowDown aria-hidden />
             </a>
           </div>
-
-          <dl className="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-border pt-6">
-            {STATS.map((s) => (
-              <div key={s.label}>
-                <dt className="sr-only">{s.label}</dt>
-                <dd className="font-mono text-2xl font-semibold tracking-tight sm:text-3xl">{s.value}</dd>
-                <dd className="mt-1 text-xs leading-snug text-muted-foreground sm:text-sm">{s.label}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
 
         <div>

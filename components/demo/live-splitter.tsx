@@ -377,9 +377,6 @@ function SettleUp({
           </ul>
         )}
       </div>
-      <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground">
-        Computed by the app&apos;s own <code className="font-mono">computeSettlements()</code>, running in your browser.
-      </p>
     </div>
   )
 }

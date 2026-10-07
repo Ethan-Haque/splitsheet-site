@@ -18,7 +18,7 @@ export function SplitAnatomy() {
       <Container>
         <SectionHeading
           eyebrow="The math"
-          title={<span id="math-title">Anatomy of a split: where does the odd cent go?</span>}
+          title={<span id="math-title">Where does the odd cent go?</span>}
         >
           Split $100 three ways and a naive app shows $33.33 × 3, which is $99.99. Somebody has to
           carry the extra cent, and every phone in the group has to agree on who.
@@ -100,12 +100,12 @@ export function SplitAnatomy() {
 
         <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.35fr] lg:items-start">
           <div data-reveal>
-            <h3 className="text-xl font-semibold tracking-tight">Settling up: fast, and honest about it</h3>
+            <h3 className="text-xl font-semibold tracking-tight">Settling up in as few payments as it can</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Finding the fewest possible payments is NP-hard: it reduces to subset-sum. Splitsheet pays
-              the largest debtor into the largest creditor, repeatedly. It runs in O(n log n), never needs
-              more than n − 1 payments, and is occasionally one above optimal. This is the case the
-              source&apos;s own doc comment calls out.
+              Finding the true minimum gets slow as a group grows, so Splitsheet uses a quick rule:
+              whoever owes the most pays whoever is owed the most, and repeat. It never takes more
+              payments than one fewer than the number of people, but now and then it takes one more
+              than strictly needed. Here is a case where it does.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2" data-reveal>

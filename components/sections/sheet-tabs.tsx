@@ -36,8 +36,8 @@ export function SheetTabs() {
   const [docked, setDocked] = useState<boolean | null>(null)
 
   useEffect(() => {
-    // Without an observer the dock stays hidden; the header and footer links
-    // still reach every section and the sign-up.
+    // Only a browser too old to run this React build lacks an observer; the
+    // guard keeps it from throwing, and the header and footer still reach the app.
     if (!('IntersectionObserver' in window)) return
 
     // A thin band across the middle of the viewport: whichever section is

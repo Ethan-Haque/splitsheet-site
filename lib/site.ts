@@ -1,6 +1,6 @@
 /**
  * Every outbound link and every number the page quotes, in one place, so a
- * repo going public or a test count moving is a one-line change.
+ * repo going public or a URL moving is a one-line change.
  */
 
 /** Where this site is served. Used for canonical URLs, the sitemap and OG tags. */
@@ -38,9 +38,3 @@ export const REPOS = {
     url: 'https://github.com/Ethan-Haque/splitsheet-site',
   },
 } satisfies Record<string, Repo>
-
-/**
- * Unit tests in splitsheet-web at the time of writing (`npm test` there).
- * Hand-maintained: this repo cannot see that one.
- */
-export const APP_TEST_COUNT = 114
